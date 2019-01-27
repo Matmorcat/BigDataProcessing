@@ -1,8 +1,8 @@
 from typing import Tuple
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 
 def print_stats(data: pd.DataFrame):
@@ -50,32 +50,32 @@ class Main:
     print_stats(carpet_data)
     print_stats(hardwood_data)
     # How many bars to show in the histogram
-    bin_count = 50
+    bin_count = 25
 
     # Find a common range of x values for displaying similar histograms scales with
     common_xmin = round(min(min(ravelled(carpet_data)), min(ravelled(hardwood_data))) - 10)
     common_xmax = round(max(max(ravelled(carpet_data)), max(ravelled(hardwood_data))) + 10)
 
     # Build the carpet data histogram
-    plt.hist = carpet_data.aggregate('mean', axis='columns').hist(bins=bin_count)
-    plt.title("Carpet Data")
-
-    plt.xlim(common_xmin, common_xmax)
-    plt.ylim(0, 80)
-    plt.xlabel("Feature Values")
-    plt.ylabel("Frequency")
-
-    # Display the histogram
-    plt.show()
+    plt.hist = carpet_data.aggregate('mean', axis='columns')\
+        .hist(bins=bin_count, alpha=0.5, label='Carpet', color='red', edgecolor='black')
 
     # Build the hardwood data histogram
-    plt.hist = hardwood_data.aggregate('mean', axis='columns').hist(bins=bin_count)
-    plt.title("Hardwood Data")
+    plt.hist = hardwood_data.aggregate('mean', axis='columns')\
+        .hist(bins=bin_count, alpha=0.5, label='Hardwood', color='blue', edgecolor='black')
 
+    # Set axes, labels, and other common plot info
     plt.xlim(common_xmin, common_xmax)
-    plt.ylim(0, 80)
+    plt.ylim(0, 120)
+    plt.legend(loc='upper right')
+    plt.title("Combined Data")
     plt.xlabel("Feature Values")
     plt.ylabel("Frequency")
+    plt.grid(which='major', axis='y', linestyle=':')
+    plt.grid(which='major', axis='x')
+
+    # Output the histogram to a file
+    plt.savefig('data/histograms.png')
 
     # Display the histogram
     plt.show()
