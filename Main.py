@@ -5,18 +5,23 @@ import numpy as np
 import pandas as pd
 
 
-def print_stats(data: pd.DataFrame):
+def stats(data: pd.DataFrame, name='Unknown', printout=False, save=True):
 
     dimensions: Tuple[int, int] = data.shape
     row_count: int = dimensions[0]
     col_count: int = dimensions[1]
 
-    print("Statistical Information\n")
+    stats = round(data.aggregate(['min', 'max', 'mean', 'median', 'std']), 2)
+    stats = stats.add_prefix("Feature ")
 
-    print("Observations (rows): " + str(row_count))
-    print("Dimensions / Features (columns): " + str(col_count))
-
-    print("\n" + str(data.aggregate(['min', 'max', 'mean', 'median', 'std'])))
+    if printout:
+        print(name + " Statistics:\n")
+        print(stats)
+        print("Observations (rows): " + str(row_count))
+        print("Dimensions / Features (columns): " + str(col_count))
+        print("\n\n")
+    if save:
+        stats.to_csv('data/stats-' + name.lower() + '.csv')
 
 
 def ravelled(tabular_data: pd.DataFrame) -> np.ndarray:
@@ -47,8 +52,8 @@ class Main:
     hardwood_data = pd.read_csv('data/hardwood.csv', header=None)
 
     # Print out general statistics on each data set per feature
-    print_stats(carpet_data)
-    print_stats(hardwood_data)
+    stats(carpet_data, 'Carpet', printout=True, save=True)
+    stats(hardwood_data, 'Hardwood', printout=True, save=True)
     # How many bars to show in the histogram
     bin_count = 25
 
