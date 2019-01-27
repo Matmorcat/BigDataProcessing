@@ -57,10 +57,6 @@ class Main:
     # How many bars to show in the histogram
     bin_count = 25
 
-    # Find a common range of x values for displaying similar histograms scales with
-    common_xmin = round(min(min(ravelled(carpet_data)), min(ravelled(hardwood_data))) - 10)
-    common_xmax = round(max(max(ravelled(carpet_data)), max(ravelled(hardwood_data))) + 10)
-
     # Build the carpet data histogram
     plt.hist = carpet_data.aggregate('mean', axis='columns')\
         .hist(bins=bin_count, alpha=0.5, label='Carpet', color='red', edgecolor='black')
@@ -70,8 +66,6 @@ class Main:
         .hist(bins=bin_count, alpha=0.5, label='Hardwood', color='blue', edgecolor='black')
 
     # Set axes, labels, and other common plot info
-    plt.xlim(common_xmin, common_xmax)
-    plt.ylim(0, 120)
     plt.legend(loc='upper right')
     plt.title("Combined Data")
     plt.xlabel("Feature Values")
