@@ -66,10 +66,11 @@ class Main:
         .hist(bins=bin_count, alpha=0.5, label='Hardwood', color='blue', edgecolor='black')
 
     # Set axes, labels, and other common plot info
-    plt.legend(loc='upper right')
+    plt.legend(loc='best')
     plt.title("Combined Data")
     plt.xlabel("Feature Values")
     plt.ylabel("Frequency")
+    plt.minorticks_on()
     plt.grid(which='major', axis='y', linestyle=':')
     plt.grid(which='major', axis='x')
 
@@ -77,6 +78,30 @@ class Main:
     plt.savefig('data/histograms.png')
 
     # Display the histogram
+    plt.show()
+
+    # Build the carpet data line plot
+    plt.plot = carpet_data.aggregate('mean', axis='rows')\
+        .plot(label='Carpet', color='red')
+
+    # Build the carpet data line plot
+    plt.plot = hardwood_data.aggregate('mean', axis='rows')\
+        .plot(label='Hardwood', color='blue')
+
+    # Set axes, labels, and other common plot info
+    plt.legend(loc="best")
+    plt.title("Combined Data")
+    plt.xlabel("Feature Number")
+    plt.ylabel("Mean")
+    plt.minorticks_on()
+    plt.grid(which='major', axis='y', linestyle='-.')
+    plt.grid(which='major', axis='x', linestyle=':')
+    plt.grid(which='minor', axis='y', linestyle=':')
+
+    # Output the line plot to a file
+    plt.savefig('data/line_plots.png')
+
+    # Display the line plot
     plt.show()
 
     # Create a new data set with both previous data stacked together (round to 2 decimal places to fix approx. error)
