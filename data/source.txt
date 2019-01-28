@@ -1,4 +1,4 @@
-The data used for carpet.csv and hardwood.csv are provided by the book:
+The data used as inputs (carpet.csv and hardwood.csv) are provided by the book:
 
 S. Suthaharan. Machine learning models and algorithms for big data classification - Thinking with examples for effective
 learning. Integrated Series in Information Systems, vol. 36,pp. 1-359, Springer US. 2016.

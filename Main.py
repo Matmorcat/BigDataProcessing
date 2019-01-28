@@ -21,7 +21,7 @@ def stats(data: pd.DataFrame, name='Unknown', printout=False, save=True):
         print("Dimensions / Features (columns): " + str(col_count))
         print("\n\n")
     if save:
-        stats.to_csv('data/stats-' + name.lower() + '.csv')
+        stats.to_csv('data/output/stats-' + name.lower() + '.csv')
 
 
 def ravelled(tabular_data: pd.DataFrame) -> np.ndarray:
@@ -48,8 +48,8 @@ def shuffled(data: pd.DataFrame) -> pd.DataFrame:
 class Main:
 
     # Read the carpet and hardwood data in from the data folder
-    carpet_data = pd.read_csv('data/carpet.csv', header=None)
-    hardwood_data = pd.read_csv('data/hardwood.csv', header=None)
+    carpet_data = pd.read_csv('data/input/carpet.csv', header=None)
+    hardwood_data = pd.read_csv('data/input/hardwood.csv', header=None)
 
     # Print out general statistics on each data set per feature
     stats(carpet_data, 'Carpet', printout=True, save=True)
@@ -75,7 +75,7 @@ class Main:
     plt.grid(which='major', axis='x')
 
     # Output the histogram to a file
-    plt.savefig('data/histograms.png')
+    plt.savefig('data/output/histograms.png')
 
     # Display the histogram
     plt.show()
@@ -99,7 +99,7 @@ class Main:
     plt.grid(which='minor', axis='y', linestyle=':')
 
     # Output the line plot to a file
-    plt.savefig('data/line_plots.png')
+    plt.savefig('data/output/line_plots.png')
 
     # Display the line plot
     plt.show()
@@ -108,23 +108,23 @@ class Main:
     combined_data = round(combined(carpet_data, hardwood_data), 2)
 
     # Create a CSV file with this data
-    combined_data.to_csv('data/carwood.csv', header=None, index=None)
+    combined_data.to_csv('data/output/carwood.csv', header=None, index=None)
 
     # Create a new data set with the combined data, but shuffled
     combined_shuffled_data = shuffled(combined_data)
 
     # Create a CSV file with this data
-    combined_shuffled_data.to_csv('data/randcarwood.csv', header=None, index=None)
+    combined_shuffled_data.to_csv('data/output/randcarwood.csv', header=None, index=None)
 
     # Get the first 80% of the shuffled file
     top80_data = combined_shuffled_data.iloc[:int(round(combined_shuffled_data.shape[0] * 0.80))]
 
     # Create a CSV file with this data
-    top80_data.to_csv('data/Trainrandcarwood80.csv', header=None, index=None)
+    top80_data.to_csv('data/output/Trainrandcarwood80.csv', header=None, index=None)
 
     # Get the last 20% of the shuffled file
     bottom20_data = combined_shuffled_data.iloc[int(round(combined_shuffled_data.shape[0] * 0.80)):]
 
     # Create a CSV file with this data
-    bottom20_data.to_csv('data/Testrandcarwood20.csv', header=None, index=None)
+    bottom20_data.to_csv('data/output/Testrandcarwood20.csv', header=None, index=None)
 
