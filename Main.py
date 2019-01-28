@@ -17,17 +17,17 @@ def stats(data: pd.DataFrame, name='Unknown', printout=cf.STATS_OUTPUT_BOOL, sav
     row_count: int = dimensions[0]
     col_count: int = dimensions[1]
 
-    stats = round(data.aggregate(cf.AGGREGATED_DATA_FUNCS), 2)
-    stats = stats.add_prefix("Feature ")
+    stats_data = round(data.aggregate(cf.AGGREGATED_DATA_FUNCS), 2)
+    stats_data = stats_data.add_prefix("Feature ")
 
     if printout:
         print(name + " Statistics:\n")
-        print(stats)
+        print(stats_data)
         print("Observations (rows): " + str(row_count))
         print("Dimensions / Features (columns): " + str(col_count))
         print("\n\n")
     if save:
-        stats.to_csv(cf.OUTPUT_DIRECTORY + 'stats-' + name.lower() + '.csv')
+        stats_data.to_csv(cf.OUTPUT_DIRECTORY + 'stats-' + name.lower() + '.csv')
 
 
 def ravelled(tabular_data: pd.DataFrame) -> np.ndarray:
