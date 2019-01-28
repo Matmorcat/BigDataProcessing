@@ -1,17 +1,23 @@
+"""
+A very basic program that takes in two files (see config for file names) as CSV files and calculates some statistics and
+outputs new CSV and PNG files for analysis and produces randomized data sets for training machine learning algorithms.
+"""
 from typing import Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+import config as cf
 
-def stats(data: pd.DataFrame, name='Unknown', printout=False, save=True):
+
+def stats(data: pd.DataFrame, name='Unknown', printout=cf.STATS_OUTPUT_BOOL, save=cf.STATS_SAVE_BOOL):
 
     dimensions: Tuple[int, int] = data.shape
     row_count: int = dimensions[0]
     col_count: int = dimensions[1]
 
-    stats = round(data.aggregate(['min', 'max', 'mean', 'median', 'std']), 2)
+    stats = round(data.aggregate(cf.AGGREGATED_DATA_FUNCS), 2)
     stats = stats.add_prefix("Feature ")
 
     if printout:
@@ -21,7 +27,7 @@ def stats(data: pd.DataFrame, name='Unknown', printout=False, save=True):
         print("Dimensions / Features (columns): " + str(col_count))
         print("\n\n")
     if save:
-        stats.to_csv('data/output/stats-' + name.lower() + '.csv')
+        stats.to_csv(cf.OUTPUT_DIRECTORY + 'stats-' + name.lower() + '.csv')
 
 
 def ravelled(tabular_data: pd.DataFrame) -> np.ndarray:
@@ -48,22 +54,22 @@ def shuffled(data: pd.DataFrame) -> pd.DataFrame:
 class Main:
 
     # Read the carpet and hardwood data in from the data folder
-    carpet_data = pd.read_csv('data/input/carpet.csv', header=None)
-    hardwood_data = pd.read_csv('data/input/hardwood.csv', header=None)
+    carpet_data = pd.read_csv(cf.INPUT_DIRECTORY + cf.INPUT_A_FILE, header=None)
+    hardwood_data = pd.read_csv(cf.INPUT_DIRECTORY + cf.INPUT_B_FILE, header=None)
 
     # Print out general statistics on each data set per feature
-    stats(carpet_data, 'Carpet', printout=True, save=True)
-    stats(hardwood_data, 'Hardwood', printout=True, save=True)
+    stats(carpet_data, 'Carpet')
+    stats(hardwood_data, 'Hardwood')
     # How many bars to show in the histogram
     bin_count = 25
 
     # Build the carpet data histogram
     plt.hist = carpet_data.aggregate('mean', axis='columns')\
-        .hist(bins=bin_count, alpha=0.5, label='Carpet', color='red', edgecolor='black')
+        .hist(bins=bin_count, alpha=0.5, label='Carpet', color=cf.INPUT_A_COLOR, edgecolor='black')
 
     # Build the hardwood data histogram
     plt.hist = hardwood_data.aggregate('mean', axis='columns')\
-        .hist(bins=bin_count, alpha=0.5, label='Hardwood', color='blue', edgecolor='black')
+        .hist(bins=bin_count, alpha=0.5, label='Hardwood', color=cf.INPUT_B_COLOR, edgecolor='black')
 
     # Set axes, labels, and other common plot info
     plt.legend(loc='best')
@@ -75,18 +81,23 @@ class Main:
     plt.grid(which='major', axis='x')
 
     # Output the histogram to a file
-    plt.savefig('data/output/histograms.png')
+    if cf.GRAPHS_SAVE_BOOL:
+        plt.savefig(cf.OUTPUT_DIRECTORY + 'histograms.png')
 
     # Display the histogram
-    plt.show()
+    if cf.GRAPHS_OUTPUT_BOOL:
+        plt.show()
+
+    # Clear the figure to make a new figure
+    plt.clf()
 
     # Build the carpet data line plot
     plt.plot = carpet_data.aggregate('mean', axis='rows')\
-        .plot(label='Carpet', color='red')
+        .plot(label='Carpet', color=cf.INPUT_A_COLOR)
 
     # Build the carpet data line plot
     plt.plot = hardwood_data.aggregate('mean', axis='rows')\
-        .plot(label='Hardwood', color='blue')
+        .plot(label='Hardwood', color=cf.INPUT_B_COLOR)
 
     # Set axes, labels, and other common plot info
     plt.legend(loc="best")
@@ -99,32 +110,34 @@ class Main:
     plt.grid(which='minor', axis='y', linestyle=':')
 
     # Output the line plot to a file
-    plt.savefig('data/output/line_plots.png')
+    if cf.GRAPHS_SAVE_BOOL:
+        plt.savefig(cf.OUTPUT_DIRECTORY + 'line_plots.png')
 
     # Display the line plot
-    plt.show()
+    if cf.GRAPHS_OUTPUT_BOOL:
+        plt.show()
 
     # Create a new data set with both previous data stacked together (round to 2 decimal places to fix approx. error)
     combined_data = round(combined(carpet_data, hardwood_data), 2)
 
     # Create a CSV file with this data
-    combined_data.to_csv('data/output/carwood.csv', header=None, index=None)
+    combined_data.to_csv(cf.OUTPUT_DIRECTORY + 'carwood.csv', header=None, index=None)
 
     # Create a new data set with the combined data, but shuffled
     combined_shuffled_data = shuffled(combined_data)
 
     # Create a CSV file with this data
-    combined_shuffled_data.to_csv('data/output/randcarwood.csv', header=None, index=None)
+    combined_shuffled_data.to_csv(cf.OUTPUT_DIRECTORY + 'randcarwood.csv', header=None, index=None)
 
     # Get the first 80% of the shuffled file
     top80_data = combined_shuffled_data.iloc[:int(round(combined_shuffled_data.shape[0] * 0.80))]
 
     # Create a CSV file with this data
-    top80_data.to_csv('data/output/Trainrandcarwood80.csv', header=None, index=None)
+    top80_data.to_csv(cf.OUTPUT_DIRECTORY + 'Trainrandcarwood80.csv', header=None, index=None)
 
     # Get the last 20% of the shuffled file
     bottom20_data = combined_shuffled_data.iloc[int(round(combined_shuffled_data.shape[0] * 0.80)):]
 
     # Create a CSV file with this data
-    bottom20_data.to_csv('data/output/Testrandcarwood20.csv', header=None, index=None)
+    bottom20_data.to_csv(cf.OUTPUT_DIRECTORY + 'Testrandcarwood20.csv', header=None, index=None)
 
