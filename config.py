@@ -1,5 +1,5 @@
 """
-Pre-Processing Config
+Processing Config
 """
 
 # The path in the project directory to read in the CSV files

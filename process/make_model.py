@@ -31,7 +31,8 @@ class_names = ['Carpet', 'Hardwood']
 
 # Format data for processing
 
-print("Feature Values " + str(train_data.shape) + ":\n" + str(train_data) + "\n\nLabels " + str(train_labels.shape) + ":\n" + str(train_labels))
+print("Feature Values " + str(train_data.shape) + ":\n" + str(train_data) +
+      "\n\nLabels " + str(train_labels.shape) + ":\n" + str(train_labels))
 
 # Initialize variables for TensorFlow
 
@@ -67,4 +68,4 @@ while test_acc < 0.999:
 
 model.summary()
 model.save_weights(cf.POST_OUTPUT_DIRECTORY + 'weights')
-print('Test Accuracy (Gen ' + str(gen) + '): ' + str(test_acc*100) + '%')
+print('Test Accuracy (Gen ' + str(gen) + '): ' + str(round(test_acc*100, 2)) + '%')
