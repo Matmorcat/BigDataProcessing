@@ -5,7 +5,7 @@
       <excludeFolder url="file://$MODULE_DIR$/data/input" />
       <excludeFolder url="file://$MODULE_DIR$/data/output" />
     </content>
-    <orderEntry type="jdk" jdkName="Pipenv (BigData1)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Pipenv (BigDataProcessing)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="R User Library" level="project" />
     <orderEntry type="library" name="R Skeletons" level="application" />
