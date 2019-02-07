@@ -13,18 +13,24 @@ the project to run.
 Output
 =====
 
-If everything is setup correctly, this project should output the following files:
+If everything is setup correctly, this project should output the following files in `BigDataProcessing/data/output`:
 
 ### Data Sets
-- *carwood.csv*: contains the combined data of the carpet and wood CSV data
-- *randcarwood.csv*: contains the data from *carwood.csv*, but shuffled
-- *Testrandcarwood20.csv*: a sample of 20% of the *randcarwood.csv* for testing
-- *Trainrandcarwood80.csv*: a sample of 80% of the *randcarwood.csv* for training
+ File                    | Description 
+ ----------------------- | -----------------------------------------------------------
+*carwood.csv*            | Contains the combined data of the carpet and wood CSV data
+*randcarwood.csv*        | Contains the data from *carwood.csv*, but shuffled
+*Testrandcarwood20.csv*  | A sample of 20% of the *randcarwood.csv* for testing
+*Trainrandcarwood80.csv* | A sample of 80% of the *randcarwood.csv* for training
 
 ### Graphs
-- *histograms.png*: a display of frequencies of values for both carpet and hardwood data
-- *line_plots.png*: a display of mean values for both carpet and hardwood data by feature
+ File                    | Description 
+ ----------------------- | -----------------------------------------------------------
+*histograms.png*         | A display of frequencies of values for both carpet and hardwood data
+*line_plots.png*         | A display of mean values for both carpet and hardwood data by feature
 
 ### Statistics
-- *stats-carpet.csv*: aggregate information (min, max, mean, median, and standard deviation) for the carpet data set per feature
-- *stats-hardwood.csv*: aggregate information (min, max, mean, median, and standard deviation) for the hardwood data set per feature
+ File                    | Description 
+ ----------------------- | -----------------------------------------------------------
+*stats-carpet.csv*       | Aggregate info (min, max, mean, median, and standard deviation) for carpet data
+*stats-hardwood.csv*     | Aggregate info (min, max, mean, median, and standard deviation) for hardwood data
