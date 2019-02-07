@@ -26,5 +26,5 @@ If everything is setup correctly, this project should output the following files
 - *line_plots.png*: a display of mean values for both carpet and hardwood data by feature
 
 ### Statistics
-- *stats-carpet*: aggregate information (min, max, mean, median, and standard deviation) for the carpet data set per feature
-- *stats-hardwood*: aggregate information (min, max, mean, median, and standard deviation) for the hardwood data set per feature
+- *stats-carpet.csv*: aggregate information (min, max, mean, median, and standard deviation) for the carpet data set per feature
+- *stats-hardwood.csv*: aggregate information (min, max, mean, median, and standard deviation) for the hardwood data set per feature
