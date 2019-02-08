@@ -1,22 +1,28 @@
 # Preparation Script
 
 This script allows for processing two class separated CSV files with raw values as a dataset into usable data for big
-data processing.
+data processing. This data is provided by the source textbook located [**here**](prep/data/source.txt).
+
 
 ## Usage
 
 In order to use this project, you'll need a few things:
-1. Download the *carpet.csv* and *hardwood.csv* files from the [here](https://www.uncg.edu/cmp/downloads/files/CH3.rar). 
-([Source](https://github.com/Matmorcat/BigDataProcessing/blob/master/prep/data/input/source.txt))
-2. Put the CSV files in the `BigDataProcessing/prep/data/input` folder (create an `input` folder if it does not exist)
-3. Make sure that you have **Python 3.6** (3.7 will not work with TensorFlow) and the latest version of **Pipenv** to ensure you can load the environment
+1. Download the *carpet.csv* and *hardwood.csv* files from the publicly available [**Chapter 3 files**](https://www.uncg.edu/cmp/downloads/files/CH3.rar)
+of the [**textbook**](prep/data/source.txt)
+
+2. Put the CSV files in the [`BigDataProcessing/prep/data/input`](prep/data/input) folder (create an `input` folder if it does not exist)
+
+3. Make sure that you have [**Python 3.6**](https://www.python.org/downloads/) (TensorFlow 1.12.0 does not support Python 3.7) and
+the latest version of [**Pipenv**](https://pypi.org/project/pipenv/) to ensure you can load the environment
 with the necessary dependencies.
-4. Any customizations can be done in `BigDataProcessing/config.py`, but it should not be necessary to edit this file for 
+
+4. Any customizations can be done in [`BigDataProcessing/config.py`](config.py), but it should not be necessary to edit this file for 
 the project to run.
+
 
 ## Output
 
-If everything is setup correctly, this project should output the following files in `BigDataProcessing/prep/data/output`:
+If everything is setup correctly, this project should output the following files in [`BigDataProcessing/prep/data/output`](prep/data/output):
 
 ### Data Sets
  File                    | Description 
