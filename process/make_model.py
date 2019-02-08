@@ -58,7 +58,7 @@ model.compile(optimizer='adam',
 test_acc = 0
 gen = 1
 
-while test_acc < 0.999:
+while test_acc < cf.MINIMUM_TEST_SCORE:
     model.fit(train_data, train_labels, epochs=1)
 
     test_loss, test_acc = model.evaluate(test_data, test_labels)
