@@ -65,13 +65,17 @@ class Main:
         print("File not found in path: " + file_b_path)
         exit()
 
+    print("Reading in the data...")
     # Read the carpet and hardwood data in from the data folder
     carpet_data = pd.read_csv(file_a_path, header=None)
     hardwood_data = pd.read_csv(file_b_path, header=None)
 
+    print("Calculating statistical information...")
     # Print out general statistics on each data set per feature
     stats(carpet_data, 'Carpet')
     stats(hardwood_data, 'Hardwood')
+
+    print("Creating graphs...")
 
     # Build the carpet data histogram
     plt.hist = carpet_data.aggregate('mean', axis='columns')\
@@ -92,10 +96,12 @@ class Main:
 
     # Output the histogram to a file
     if cf.GRAPHS_SAVE_BOOL:
+        print("Saving histogram...")
         plt.savefig(cf.PRE_OUTPUT_DIRECTORY + 'histograms.png')
 
     # Display the histogram
     if cf.GRAPHS_OUTPUT_BOOL:
+        print("Displaying histogram...")
         plt.show()
 
     # Clear the figure to make a new figure
@@ -105,7 +111,7 @@ class Main:
     plt.plot = carpet_data.aggregate('mean', axis='rows')\
         .plot(label='Carpet', color=cf.INPUT_A_COLOR)
 
-    # Build the carpet data line plot
+    # Build the hardwood data line plot
     plt.plot = hardwood_data.aggregate('mean', axis='rows')\
         .plot(label='Hardwood', color=cf.INPUT_B_COLOR)
 
@@ -121,33 +127,42 @@ class Main:
 
     # Output the line plot to a file
     if cf.GRAPHS_SAVE_BOOL:
+        print("Saving line plot...")
         plt.savefig(cf.PRE_OUTPUT_DIRECTORY + 'line_plots.png')
 
     # Display the line plot
     if cf.GRAPHS_OUTPUT_BOOL:
+        print("Displaying line plot...")
         plt.show()
+
+    print("Generating labelled datasets...")
 
     # Create a new data set with both previous data stacked together (round to 2 decimal places to fix approx. error)
     combined_data = round(combined(carpet_data, hardwood_data), 2)
 
-    # Create a CSV file with this data
-    combined_data.to_csv(cf.PRE_OUTPUT_DIRECTORY + 'carwood.csv', header=None, index=None)
-
     # Create a new data set with the combined data, but shuffled
     combined_shuffled_data = shuffled(combined_data)
 
-    # Create a CSV file with this data
-    combined_shuffled_data.to_csv(cf.PRE_OUTPUT_DIRECTORY + 'randcarwood.csv', header=None, index=None)
 
     # Get the first 80% of the shuffled file
     top80_data = combined_shuffled_data.iloc[:int(round(combined_shuffled_data.shape[0] * 0.80))]
 
-    # Create a CSV file with this data
-    top80_data.to_csv(cf.PRE_OUTPUT_DIRECTORY + 'Trainrandcarwood80.csv', header=None, index=None)
-
     # Get the last 20% of the shuffled file
     bottom20_data = combined_shuffled_data.iloc[int(round(combined_shuffled_data.shape[0] * 0.80)):]
 
+    print("Saving all generated datasets...")
+
+    # Create a CSV file with this data
+    combined_data.to_csv(cf.PRE_OUTPUT_DIRECTORY + 'carwood.csv', header=None, index=None)
+
+    # Create a CSV file with this data
+    combined_shuffled_data.to_csv(cf.PRE_OUTPUT_DIRECTORY + 'randcarwood.csv', header=None, index=None)
+
+    # Create a CSV file with this data
+    top80_data.to_csv(cf.PRE_OUTPUT_DIRECTORY + 'Trainrandcarwood80.csv', header=None, index=None)
+
     # Create a CSV file with this data
     bottom20_data.to_csv(cf.PRE_OUTPUT_DIRECTORY + 'Testrandcarwood20.csv', header=None, index=None)
+
+    print("\nDatasets successfully created!")
 
