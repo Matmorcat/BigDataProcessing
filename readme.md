@@ -10,7 +10,7 @@ In order to use this project, you'll need a few things:
 1. Download the *carpet.csv* and *hardwood.csv* files from the publicly available [**Chapter 3 files**](https://www.uncg.edu/cmp/downloads/files/CH3.rar)
 of the [**textbook**](prep/data/input/source.txt)
 
-2. Put the CSV files in the [`BigDataProcessing/prep/data/input`](prep/data/input) folder (create an `input` folder if it does not exist)
+2. Put the CSV files in the [`BigDataProcessing/prep/data/input`](prep/data/input) folder
 
 3. Make sure that you have [**Python 3.6**](https://www.python.org/downloads/) (TensorFlow 1.12.0 does not support Python 3.7) and
 the latest version of [**Pipenv**](https://pypi.org/project/pipenv/) to ensure you can load the environment
