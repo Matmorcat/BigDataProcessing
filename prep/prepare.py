@@ -2,6 +2,7 @@
 A very basic program that takes in two files (see config for file names) as CSV files and calculates some statistics and
 outputs new CSV and PNG files for analysis and produces randomized data sets for training machine learning algorithms.
 """
+from pathlib import Path
 from typing import Tuple
 
 import matplotlib.pyplot as plt
@@ -53,9 +54,20 @@ def shuffled(data: pd.DataFrame) -> pd.DataFrame:
 
 class Main:
 
+    file_a_path = cf.PRE_INPUT_DIRECTORY + cf.INPUT_A_FILE
+    file_b_path = cf.PRE_INPUT_DIRECTORY + cf.INPUT_B_FILE
+
+    # Make sure that the needed files exist
+    if not Path(file_a_path).is_file():
+        print("File not found in path: " + file_a_path)
+        exit()
+    if not Path(file_b_path).is_file():
+        print("File not found in path: " + file_b_path)
+        exit()
+
     # Read the carpet and hardwood data in from the data folder
-    carpet_data = pd.read_csv(cf.PRE_INPUT_DIRECTORY + cf.INPUT_A_FILE, header=None)
-    hardwood_data = pd.read_csv(cf.PRE_INPUT_DIRECTORY + cf.INPUT_B_FILE, header=None)
+    carpet_data = pd.read_csv(file_a_path, header=None)
+    hardwood_data = pd.read_csv(file_b_path, header=None)
 
     # Print out general statistics on each data set per feature
     stats(carpet_data, 'Carpet')
