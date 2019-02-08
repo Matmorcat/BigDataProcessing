@@ -35,6 +35,9 @@ STATS_OUTPUT_BOOL = False
 # Save statistics into a CSV file
 STATS_SAVE_BOOL = True
 
+# How many bars to show in the histogram
+BIN_COUNT = 25
+
 # Display graphs as pop-ups in order
 GRAPHS_OUTPUT_BOOL = False
 

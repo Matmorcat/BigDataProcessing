@@ -60,16 +60,14 @@ class Main:
     # Print out general statistics on each data set per feature
     stats(carpet_data, 'Carpet')
     stats(hardwood_data, 'Hardwood')
-    # How many bars to show in the histogram
-    bin_count = 25
 
     # Build the carpet data histogram
     plt.hist = carpet_data.aggregate('mean', axis='columns')\
-        .hist(bins=bin_count, alpha=0.5, label='Carpet', color=cf.INPUT_A_COLOR, edgecolor='black')
+        .hist(bins=cf.BIN_COUNT, alpha=0.5, label='Carpet', color=cf.INPUT_A_COLOR, edgecolor='black')
 
     # Build the hardwood data histogram
     plt.hist = hardwood_data.aggregate('mean', axis='columns')\
-        .hist(bins=bin_count, alpha=0.5, label='Hardwood', color=cf.INPUT_B_COLOR, edgecolor='black')
+        .hist(bins=cf.BIN_COUNT, alpha=0.5, label='Hardwood', color=cf.INPUT_B_COLOR, edgecolor='black')
 
     # Set axes, labels, and other common plot info
     plt.legend(loc='best')
