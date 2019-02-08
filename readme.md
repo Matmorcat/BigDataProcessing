@@ -1,5 +1,9 @@
-Preparation Script Usage
-=====
+# Preparation Script
+
+This script allows for processing two class separated CSV files with raw values as a dataset into usable data for big
+data processing.
+
+## Usage
 
 In order to use this project, you'll need a few things:
 1. Download the *carpet.csv* and *hardwood.csv* files from the [here](https://www.uncg.edu/cmp/downloads/files/CH3.rar). 
@@ -10,8 +14,7 @@ with the necessary dependencies.
 4. Any customizations can be done in `BigDataProcessing/config.py`, but it should not be necessary to edit this file for 
 the project to run.
 
-Output
-=====
+## Output
 
 If everything is setup correctly, this project should output the following files in `BigDataProcessing/prep/data/output`:
 
