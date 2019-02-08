@@ -2,6 +2,13 @@
 Processing Config
 """
 
+
+###############################
+#                             #
+# Preparation Script Settings #
+#                             #
+###############################
+
 # The path in the project directory to read in the CSV files
 PRE_INPUT_DIRECTORY = '../prep/data/input/'
 
@@ -33,6 +40,13 @@ GRAPHS_OUTPUT_BOOL = False
 
 # Save graphs as PNG files
 GRAPHS_SAVE_BOOL = True
+
+
+#############################
+#                           #
+# Modelling Script Settings #
+#                           #
+#############################
 
 # Nodes (neurons) that the compiler can use
 NODES = 128
