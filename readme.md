@@ -1,14 +1,14 @@
 # Preparation Script
 
 This script allows for processing two class separated CSV files with raw values as a dataset into usable data for big
-data processing. This data is provided by the source textbook located [**here**](prep/data/source.txt).
+data processing. This data is provided by the source textbook located [**here**](prep/data/input/source.txt).
 
 
 ## Usage
 
 In order to use this project, you'll need a few things:
 1. Download the *carpet.csv* and *hardwood.csv* files from the publicly available [**Chapter 3 files**](https://www.uncg.edu/cmp/downloads/files/CH3.rar)
-of the [**textbook**](prep/data/source.txt)
+of the [**textbook**](prep/data/input/source.txt)
 
 2. Put the CSV files in the [`BigDataProcessing/prep/data/input`](prep/data/input) folder (create an `input` folder if it does not exist)
 
