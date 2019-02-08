@@ -55,14 +55,14 @@ hardwood floor and a carpet floor image.
 ## Usage
 
 Before running:
-1. *Testrandcarwood20.csv* and *Trainrandcarwood80.csv* exist in `BigDataProcessing/prep/data/output`
+1. Check that *Testrandcarwood20.csv* and *Trainrandcarwood80.csv* exist in `BigDataProcessing/prep/data/output`
 
-2. Customize the modelling process in [`BigDataProcessing/config.py`][cf].
+2. Customize the modelling parameters in [`BigDataProcessing/config.py`][cf].
 
 
 ## Output
 
-If everything is setup correctly, the following files will be created in `BigDataProcessing/process/data/output`:
+If everything is valid, the following files will be created in `BigDataProcessing/process/data/output`:
 
  File                           | Description 
  ------------------------------ | -----------------------------------------------------------
