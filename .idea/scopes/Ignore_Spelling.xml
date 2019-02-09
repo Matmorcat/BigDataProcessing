@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Ignore Spelling" pattern="file:Pipfile.lock" />
+</component>
