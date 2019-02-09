@@ -1,0 +1,1 @@
+This folder contains a backup of model information for a working run where test accuracy was exactly 100%.
