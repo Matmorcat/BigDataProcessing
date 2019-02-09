@@ -1,8 +1,10 @@
+import os
+import config as cf
+
 import numpy as np
 import pandas as pd
 import tensorflow as tf
 
-import config as cf
 
 # Create an array of indexes that contain the features in the dataset CSV file
 feature_indexes = []
@@ -53,6 +55,9 @@ model = tf.keras.Sequential([
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
+
+# Make the directory if it does not exist
+os.makedirs(cf.POST_OUTPUT_DIRECTORY, exist_ok=True)
 
 # Train and evaluate model
 test_acc = 0

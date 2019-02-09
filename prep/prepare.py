@@ -5,6 +5,8 @@ outputs new CSV and PNG files for analysis and produces randomized data sets for
 from pathlib import Path
 from typing import Tuple
 
+import os
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -69,6 +71,9 @@ class Main:
     # Read the carpet and hardwood data in from the data folder
     carpet_data = pd.read_csv(file_a_path, header=None)
     hardwood_data = pd.read_csv(file_b_path, header=None)
+
+    # Make the directory if it does not exist
+    os.makedirs(cf.PRE_OUTPUT_DIRECTORY, exist_ok=True)
 
     print("Calculating statistical information...")
     # Print out general statistics on each data set per feature
@@ -142,7 +147,6 @@ class Main:
 
     # Create a new data set with the combined data, but shuffled
     combined_shuffled_data = shuffled(combined_data)
-
 
     # Get the first 80% of the shuffled file
     top80_data = combined_shuffled_data.iloc[:int(round(combined_shuffled_data.shape[0] * 0.80))]
