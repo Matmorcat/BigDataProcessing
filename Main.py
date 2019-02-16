@@ -120,21 +120,24 @@ class Main:
     plt.clf()
 
     # Select 3 random features to compare in a 3D scatter plot
-    feature_set = random.sample(range(64), 3)
+    carpet_feature_set = random.sample(range(carpet_data.shape[1]), 3)
 
-    x_carpet = carpet_data[feature_set[0]]
-    y_carpet = carpet_data[feature_set[1]]
-    z_carpet = carpet_data[feature_set[2]]
+    carpet_x = carpet_data[carpet_feature_set[0]]
+    carpet_y = carpet_data[carpet_feature_set[1]]
+    carpet_z = carpet_data[carpet_feature_set[2]]
 
-    x_hardwood = hardwood_data[feature_set[0]]
-    y_hardwood = hardwood_data[feature_set[1]]
-    z_hardwood = hardwood_data[feature_set[2]]
+    # Select 3 random features to compare in a 3D scatter plot
+    hardwood_feature_set = random.sample(range(hardwood_data.shape[1]), 3)
+
+    hardwood_x = hardwood_data[hardwood_feature_set[0]]
+    hardwood_y = hardwood_data[hardwood_feature_set[1]]
+    hardwood_z = hardwood_data[hardwood_feature_set[2]]
 
     fig = plt.figure()
     graph = fig.add_subplot(111, projection='3d')
 
-    graph.scatter(x_carpet, y_carpet, z_carpet, color=cf.INPUT_A_COLOR)
-    graph.scatter(x_hardwood, y_hardwood, z_hardwood, color=cf.INPUT_B_COLOR)
+    graph.scatter(carpet_x, carpet_y, carpet_z, color=cf.INPUT_A_COLOR, s=1.5)
+    graph.scatter(hardwood_x, hardwood_y, hardwood_z, color=cf.INPUT_B_COLOR, s=1.5)
 
     fig.show()
 
