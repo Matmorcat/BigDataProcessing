@@ -3,13 +3,20 @@ A very basic program that takes in two files (see config for file names) as CSV 
 outputs new CSV and PNG files for analysis and produces randomized data sets for training machine learning algorithms.
 """
 from typing import Tuple
+import random
 
+# NOTICE: The following import shows as not used, but is required to plot 3D plot
 from mpl_toolkits.mplot3d import Axes3D
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
 import config as cf
+
+# Make random function deterministic for testing
+if cf.DETERMINISTIC_RANDOM:
+    random.seed(510)
 
 
 def stats(data: pd.DataFrame, name='Unknown', printout=cf.STATS_OUTPUT_BOOL, save=cf.STATS_SAVE_BOOL):
@@ -111,13 +118,17 @@ class Main:
     plt.grid(which='minor', axis='y', linestyle=':')
 
     plt.clf()
-    x_carpet = carpet_data[0]
-    y_carpet = carpet_data[31]
-    z_carpet = carpet_data[63]
 
-    x_hardwood = hardwood_data[0]
-    y_hardwood = hardwood_data[31]
-    z_hardwood = hardwood_data[63]
+    # Select 3 random features to compare in a 3D scatter plot
+    feature_set = random.sample(range(64), 3)
+
+    x_carpet = carpet_data[feature_set[0]]
+    y_carpet = carpet_data[feature_set[1]]
+    z_carpet = carpet_data[feature_set[2]]
+
+    x_hardwood = hardwood_data[feature_set[0]]
+    y_hardwood = hardwood_data[feature_set[1]]
+    z_hardwood = hardwood_data[feature_set[2]]
 
     fig = plt.figure()
     graph = fig.add_subplot(111, projection='3d')
