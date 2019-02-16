@@ -4,6 +4,7 @@ outputs new CSV and PNG files for analysis and produces randomized data sets for
 """
 from typing import Tuple
 
+from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -108,6 +109,23 @@ class Main:
     plt.grid(which='major', axis='y', linestyle='-.')
     plt.grid(which='major', axis='x', linestyle=':')
     plt.grid(which='minor', axis='y', linestyle=':')
+
+    plt.clf()
+    x_carpet = carpet_data[0]
+    y_carpet = carpet_data[31]
+    z_carpet = carpet_data[63]
+
+    x_hardwood = hardwood_data[0]
+    y_hardwood = hardwood_data[31]
+    z_hardwood = hardwood_data[63]
+
+    fig = plt.figure()
+    graph = fig.add_subplot(111, projection='3d')
+
+    graph.scatter(x_carpet, y_carpet, z_carpet, color=cf.INPUT_A_COLOR)
+    graph.scatter(x_hardwood, y_hardwood, z_hardwood, color=cf.INPUT_B_COLOR)
+
+    fig.show()
 
     # Output the line plot to a file
     if cf.GRAPHS_SAVE_BOOL:
