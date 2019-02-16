@@ -33,6 +33,7 @@ If everything is setup correctly, this project should output the following files
 
  File                    | Description 
  ----------------------- | -----------------------------------------------------------
+*3d_scatter_plot.png*    | A display of data points for a set of three features from each dataset
 *histograms.png*         | A display of frequencies of values for both carpet and hardwood data
 *line_plots.png*         | A display of mean values for both carpet and hardwood data by feature
 
