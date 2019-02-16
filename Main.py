@@ -164,8 +164,8 @@ class Main:
 
     graph = fig.add_subplot(111, projection='3d')
 
-    graph.scatter(carpet_x, carpet_y, carpet_z, color=cf.INPUT_A_COLOR, s=1.5, label='Carpet')
-    graph.scatter(hardwood_x, hardwood_y, hardwood_z, color=cf.INPUT_B_COLOR, s=1.5, label='Hardwood')
+    graph.scatter(carpet_x, carpet_y, carpet_z, color=cf.INPUT_A_COLOR, s=4, alpha=0.50, label='Carpet')
+    graph.scatter(hardwood_x, hardwood_y, hardwood_z, color=cf.INPUT_B_COLOR, s=4, alpha=0.50, label='Hardwood')
 
     # Set axes, labels, and other common plot info
     plt.legend(loc="best")
