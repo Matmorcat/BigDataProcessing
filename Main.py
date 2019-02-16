@@ -95,11 +95,11 @@ class Main:
     plt.grid(which='major', axis='x')
 
     # Output the histogram to a file
-    if cf.GRAPHS_SAVE_BOOL:
+    if cf.FIGURES_SAVE_BOOL:
         plt.savefig(cf.OUTPUT_DIRECTORY + 'histograms.png')
 
     # Display the histogram
-    if cf.GRAPHS_OUTPUT_BOOL:
+    if cf.FIGURES_OUTPUT_BOOL:
         plt.show()
 
     # Clear the figure from memory
@@ -130,11 +130,11 @@ class Main:
     plt.grid(which='minor', axis='y', linestyle=':')
 
     # Output the line plot to a file
-    if cf.GRAPHS_SAVE_BOOL:
+    if cf.FIGURES_SAVE_BOOL:
         plt.savefig(cf.OUTPUT_DIRECTORY + 'line_plots.png')
 
     # Display the line plot
-    if cf.GRAPHS_OUTPUT_BOOL:
+    if cf.FIGURES_OUTPUT_BOOL:
         plt.show()
 
     # Clear the figure from memory
@@ -176,12 +176,12 @@ class Main:
     graph.set_zlabel("Feature " + str(feature_set[2]))
 
     # Output the 3D scatter plot to a file
-    if cf.GRAPHS_SAVE_BOOL:
+    if cf.FIGURES_SAVE_BOOL:
         plt.savefig(cf.OUTPUT_DIRECTORY + '3d_scatter_plot.png')
 
     # Display the 3D scatter plot
-    if cf.GRAPHS_OUTPUT_BOOL:
-        if cf.GRAPHS_OUTPUT_ROTATE:
+    if cf.FIGURES_OUTPUT_BOOL:
+        if cf.FIGURES_OUTPUT_ROTATE:
 
             # Rotate the axes and update
             for angle in range(0, 360):
