@@ -88,8 +88,8 @@ class Main:
     # Set axes, labels, and other common plot info
     plt.legend(loc='best')
     plt.title("Combined Data")
-    plt.xlabel("Feature Values")
-    plt.ylabel("Frequency")
+    plt.xlabel("Mean Feature Values")
+    plt.ylabel("Frequency of Observations")
     plt.minorticks_on()
     plt.grid(which='major', axis='y', linestyle=':')
     plt.grid(which='major', axis='x')
@@ -123,7 +123,7 @@ class Main:
     plt.legend(loc="best")
     plt.title("Combined Data")
     plt.xlabel("Feature Number")
-    plt.ylabel("Mean")
+    plt.ylabel("Mean Values")
     plt.minorticks_on()
     plt.grid(which='major', axis='y', linestyle='-.')
     plt.grid(which='major', axis='x', linestyle=':')
@@ -169,7 +169,7 @@ class Main:
 
     # Set axes, labels, and other common plot info
     plt.legend(loc="best")
-    plt.title("Feature Comparisons")
+    plt.title("Combined Data")
 
     graph.set_xlabel("Feature " + str(feature_set[0]))
     graph.set_ylabel("Feature " + str(feature_set[1]))
