@@ -119,21 +119,31 @@ class Main:
     plt.grid(which='major', axis='x', linestyle=':')
     plt.grid(which='minor', axis='y', linestyle=':')
 
+    # Output the line plot to a file
+    if cf.GRAPHS_SAVE_BOOL:
+        plt.savefig(cf.OUTPUT_DIRECTORY + 'line_plots.png')
+
+    # Display the line plot
+    if cf.GRAPHS_OUTPUT_BOOL:
+        plt.show()
+
+    # Clear the figure
+    plt.close()
     plt.clf()
 
-    # Select 3 random features to compare in a 3D scatter plot
-    carpet_feature_set = random.sample(range(carpet_data.shape[1]), 3)
-
-    carpet_x = carpet_data[carpet_feature_set[0]]
-    carpet_y = carpet_data[carpet_feature_set[1]]
-    carpet_z = carpet_data[carpet_feature_set[2]]
+    # Should not have to exist, but choose the lowest common feature count just in case
+    common_feature_count = min(carpet_data.shape[1], hardwood_data.shape[1])
 
     # Select 3 random features to compare in a 3D scatter plot
-    hardwood_feature_set = random.sample(range(hardwood_data.shape[1]), 3)
+    feature_set = sorted(random.sample(range(common_feature_count), 3))
 
-    hardwood_x = hardwood_data[hardwood_feature_set[0]]
-    hardwood_y = hardwood_data[hardwood_feature_set[1]]
-    hardwood_z = hardwood_data[hardwood_feature_set[2]]
+    carpet_x = carpet_data[feature_set[0]]
+    carpet_y = carpet_data[feature_set[1]]
+    carpet_z = carpet_data[feature_set[2]]
+
+    hardwood_x = hardwood_data[feature_set[0]]
+    hardwood_y = hardwood_data[feature_set[1]]
+    hardwood_z = hardwood_data[feature_set[2]]
 
     fig = plt.figure()
     graph = fig.add_subplot(111, projection='3d')
