@@ -18,7 +18,7 @@ if cf.DETERMINISTIC_RANDOM:
     random.seed(510)
 
 
-def stats(data: pd.DataFrame, name='Unknown', printout=cf.STATS_OUTPUT_BOOL, save=cf.STATS_SAVE_BOOL):
+def make_stats(data: pd.DataFrame, name='Unknown', printout=cf.STATS_OUTPUT_BOOL, save=cf.STATS_SAVE_BOOL):
 
     dimensions: Tuple[int, int] = data.shape
     row_count: int = dimensions[0]
@@ -64,9 +64,9 @@ class Main:
     carpet_data = pd.read_csv(cf.INPUT_DIRECTORY + cf.INPUT_A_FILE, header=None)
     hardwood_data = pd.read_csv(cf.INPUT_DIRECTORY + cf.INPUT_B_FILE, header=None)
 
-    # Print out general statistics on each data set per feature
-    stats(carpet_data, 'Carpet')
-    stats(hardwood_data, 'Hardwood')
+    # Calculate and save/print general statistics on each data set per feature
+    make_stats(carpet_data, 'Carpet')
+    make_stats(hardwood_data, 'Hardwood')
 
     ######################
     # Create a histogram #
