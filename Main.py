@@ -68,6 +68,7 @@ class Main:
     # Print out general statistics on each data set per feature
     stats(carpet_data, 'Carpet')
     stats(hardwood_data, 'Hardwood')
+
     # How many bars to show in the histogram
     bin_count = 25
 
@@ -96,7 +97,8 @@ class Main:
     if cf.GRAPHS_OUTPUT_BOOL:
         plt.show()
 
-    # Clear the figure to make a new figure
+    # Clear the figure
+    plt.close()
     plt.clf()
 
     # Build the carpet data line plot
@@ -136,18 +138,37 @@ class Main:
     fig = plt.figure()
     graph = fig.add_subplot(111, projection='3d')
 
-    graph.scatter(carpet_x, carpet_y, carpet_z, color=cf.INPUT_A_COLOR, s=1.5)
-    graph.scatter(hardwood_x, hardwood_y, hardwood_z, color=cf.INPUT_B_COLOR, s=1.5)
+    graph.scatter(carpet_x, carpet_y, carpet_z, color=cf.INPUT_A_COLOR, s=1.5, label='Carpet')
+    graph.scatter(hardwood_x, hardwood_y, hardwood_z, color=cf.INPUT_B_COLOR, s=1.5, label='Hardwood')
 
-    fig.show()
+    # Set axes, labels, and other common plot info
+    plt.legend(loc="best")
+    plt.title("Feature Comparisons")
 
-    # Output the line plot to a file
+    graph.set_xlabel("Feature " + str(feature_set[0]))
+    graph.set_ylabel("Feature " + str(feature_set[1]))
+    graph.set_zlabel("Feature " + str(feature_set[2]))
+
+    # Output the 3D scatter plot to a file
     if cf.GRAPHS_SAVE_BOOL:
-        plt.savefig(cf.OUTPUT_DIRECTORY + 'line_plots.png')
+        plt.savefig(cf.OUTPUT_DIRECTORY + '3d_scatter_plot.png')
 
-    # Display the line plot
+    # Display the 3D scatter plot
     if cf.GRAPHS_OUTPUT_BOOL:
-        plt.show()
+        if cf.GRAPHS_OUTPUT_ROTATE:
+
+            # Rotate the axes and update
+            for angle in range(0, 360):
+                graph.view_init(30, angle)
+                plt.draw()
+                plt.pause(.001)
+
+        else:
+            plt.show()
+
+    # Clear the figure
+    plt.close()
+    plt.clf()
 
     # Create a new data set with both previous data stacked together (round to 2 decimal places to fix approx. error)
     combined_data = round(combined(carpet_data, hardwood_data), 2)

@@ -3,7 +3,7 @@ This is the general config for the program.
 """
 
 # Make sure that all randomized values are deterministic (same across multiple runs)
-DETERMINISTIC_RANDOM = False
+DETERMINISTIC_RANDOM = True
 
 # The path in the project directory to read in the CSV files
 INPUT_DIRECTORY = 'data/input/'
