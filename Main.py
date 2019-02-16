@@ -5,7 +5,6 @@ outputs new CSV and PNG files for analysis and produces randomized data sets for
 from typing import Tuple
 import random
 
-# NOTICE: The following import shows as not used, but is required to plot 3D plot
 from mpl_toolkits.mplot3d import Axes3D
 
 import matplotlib.pyplot as plt
@@ -69,6 +68,12 @@ class Main:
     stats(carpet_data, 'Carpet')
     stats(hardwood_data, 'Hardwood')
 
+    ######################
+    # Create a histogram #
+    ######################
+
+    plt.figure(1)
+
     # How many bars to show in the histogram
     bin_count = 25
 
@@ -97,9 +102,14 @@ class Main:
     if cf.GRAPHS_OUTPUT_BOOL:
         plt.show()
 
-    # Clear the figure
-    plt.close()
-    plt.clf()
+    # Clear the figure from memory
+    plt.close(1)
+
+    ######################
+    # Create a line plot #
+    ######################
+
+    plt.figure(2)
 
     # Build the carpet data line plot
     plt.plot = carpet_data.aggregate('mean', axis='rows')\
@@ -127,9 +137,14 @@ class Main:
     if cf.GRAPHS_OUTPUT_BOOL:
         plt.show()
 
-    # Clear the figure
-    plt.close()
-    plt.clf()
+    # Clear the figure from memory
+    plt.close(2)
+
+    ############################
+    # Create a 3D scatter plot #
+    ############################
+
+    fig = plt.figure(3)
 
     # Should not have to exist, but choose the lowest common feature count just in case
     common_feature_count = min(carpet_data.shape[1], hardwood_data.shape[1])
@@ -140,12 +155,13 @@ class Main:
     carpet_x = carpet_data[feature_set[0]]
     carpet_y = carpet_data[feature_set[1]]
     carpet_z = carpet_data[feature_set[2]]
-
     hardwood_x = hardwood_data[feature_set[0]]
     hardwood_y = hardwood_data[feature_set[1]]
     hardwood_z = hardwood_data[feature_set[2]]
 
-    fig = plt.figure()
+    # This does nothing but ensure that Axes3D import isn't remove. Errors will be thrown if the import is removed.
+    Axes3D
+
     graph = fig.add_subplot(111, projection='3d')
 
     graph.scatter(carpet_x, carpet_y, carpet_z, color=cf.INPUT_A_COLOR, s=1.5, label='Carpet')
@@ -176,9 +192,8 @@ class Main:
         else:
             plt.show()
 
-    # Clear the figure
-    plt.close()
-    plt.clf()
+    # Clear the figure from memory
+    plt.close(3)
 
     # Create a new data set with both previous data stacked together (round to 2 decimal places to fix approx. error)
     combined_data = round(combined(carpet_data, hardwood_data), 2)
@@ -203,4 +218,6 @@ class Main:
 
     # Create a CSV file with this data
     bottom20_data.to_csv(cf.OUTPUT_DIRECTORY + 'Testrandcarwood20.csv', header=None, index=None)
+
+
 
