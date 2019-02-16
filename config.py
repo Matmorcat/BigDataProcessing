@@ -29,7 +29,10 @@ STATS_OUTPUT_BOOL = False
 STATS_SAVE_BOOL = True
 
 # Display graphs as pop-ups in order
-GRAPHS_OUTPUT_BOOL = False
+GRAPHS_OUTPUT_BOOL = True
 
 # Save graphs as PNG files
 GRAPHS_SAVE_BOOL = True
+
+# Output a rotating graph instead of a static graph (output boolean must be true)
+GRAPHS_OUTPUT_ROTATE = False
