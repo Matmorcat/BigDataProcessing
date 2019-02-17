@@ -195,6 +195,10 @@ class Main:
     # Clear the figure from memory
     plt.close(3)
 
+    #########################################
+    # Save new datasets to output directory #
+    #########################################
+
     # Create a new data set with both previous data stacked together (round to 2 decimal places to fix approx. error)
     combined_data = round(combined(carpet_data, hardwood_data), 2)
 
